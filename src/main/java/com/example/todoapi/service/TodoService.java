@@ -21,11 +21,28 @@ import java.util.stream.Collectors;
 @Service
 public class TodoService {
 
-    @Autowired
-    private TodoRepository todoRepository;
+//    @Autowired
+//    private TodoRepository todoRepository;
+//
+//    @Autowired
+//    private UserService userService;
+    /*
+    * DI 3:
+    * using @Autowired
+    * inject via constructor
+    * inject via setter
+    * */
+    private final TodoRepository todoRepository;
+    private UserService userService;
+
+    public TodoService(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
 
     @Autowired
-    private UserService userService;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     public TodoResponse createTodo(TodoRequest request, Long userId) {
         User user = userService.findById(userId);
