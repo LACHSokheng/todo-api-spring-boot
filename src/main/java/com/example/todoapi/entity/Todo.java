@@ -9,7 +9,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @Entity
@@ -42,4 +41,13 @@ public class Todo {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    // Constructors
+    public Todo() {}
+
+    public Todo(String title, String description, User user) {
+        this.title = title;
+        this.description = description;
+        this.user = user;
+    }
 }
